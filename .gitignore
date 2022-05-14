@@ -1,3 +1,6 @@
-node_modules
-.env
-src/app/keys/*
+server/node_modules
+server/.env
+server/src/app/keys/*
+
+web/node_modules
+web/.vscode
