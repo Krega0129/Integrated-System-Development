@@ -41,13 +41,21 @@ const verifyAuth = async (ctx, next) => {
     ctx.user = result
     await next()
   } catch (e) {
-    return errorEmitter(errorTypes.UNAUTHORIZATION)
+    return errorEmitter(errorTypes.UNAUTHORIZATION, ctx)
   }
 }
 
 // 验证身份
-const verifyPermission = async (ctx, next) => {
-  
+const verifyPermission = (target) => {
+  return async (ctx, next) => {
+    const {role} = ctx.user
+
+    if(role !== target) {
+      return errorEmitter(errorTypes.NOPERMISSION, ctx)
+    }
+
+    await next()
+  }
 }
 
 module.exports = {

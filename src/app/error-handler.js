@@ -32,6 +32,22 @@ const errorHandler = (error, ctx) => {
       status = 401;
       message = "unAuthorization"
       break;
+    case errorTypes.NOPERMISSION:
+      status = 403;
+      message = "you have no permission"
+      break;
+    case errorTypes.CATEGORY_ALREADY_EXIST:
+      status = 400;
+      message = "category already exist"
+      break;
+    case errorTypes.CATEGORY_DOES_NOT_EXIST:
+      status = 400;
+      message = "category does not exist"
+      break;
+    case errorTypes.SERVICE_DOES_NOT_EXIST:
+      status = 400;
+      message = "service does not exist"
+      break;
     default:
       status = 400
       message = "bad request"

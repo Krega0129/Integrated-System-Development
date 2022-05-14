@@ -23,6 +23,13 @@ class UserController {
     const result = await userService.updateUserInfo(name, sex, age, id)
     ctx.body = res({})
   }
+
+  async getCategory(ctx, next) {
+    const result = await userService.getCategory();
+    ctx.body = res({
+      data: result
+    })
+  }
 }
 
 module.exports = new UserController()

@@ -51,6 +51,16 @@ class UserService {
       console.log(e);
     }
   }
+
+  async getCategory() {
+    try {
+      const statement = `SELECT id, name FROM category;`;
+      const [result] = await connections.execute(statement);
+      return result;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 module.exports = new UserService()
