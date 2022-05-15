@@ -1,6 +1,7 @@
 const userService = require("../service/user.service");
+const errorEmitter = require("../utils/error-emitter");
 const res = require('../utils/res')
-
+const errorTypes = require('../constants/error-types')
 
 class UserController {
   async register(ctx, next) {
@@ -28,6 +29,16 @@ class UserController {
     const result = await userService.getCategory();
     ctx.body = res({
       data: result
+    })
+  }
+
+  async checkAccountValid(ctx, next) {
+    const {account} = ctx.query;
+    const result = await userService.checkAccountValid(account)
+    ctx.body = res({
+      data: {
+        valid: !result
+      }
     })
   }
 }

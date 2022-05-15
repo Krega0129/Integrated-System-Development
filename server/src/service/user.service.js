@@ -54,9 +54,19 @@ class UserService {
 
   async getCategory() {
     try {
-      const statement = `SELECT id, name FROM category;`;
+      const statement = `SELECT id value, name text FROM category;`;
       const [result] = await connections.execute(statement);
       return result;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async checkAccountValid(account) {
+    try {
+      const statement = `SELECT * FROM user WHERE account = ?;`;
+      const [result] = await connections.execute(statement, [account]);
+      return result[0]
     } catch (e) {
       console.log(e);
     }

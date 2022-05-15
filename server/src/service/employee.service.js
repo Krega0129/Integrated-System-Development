@@ -35,7 +35,7 @@ class EmployeeService {
     try {
       const statement = `
         SELECT
-          s.name projectName, s.category, s.seller, s.price, p.buyer, s.createAt createTime
+          s.name projectName, s.category, s.introduction, s.seller, s.price, p.buyer, s.createAt createTime
         FROM service s
         LEFT JOIN project p ON p.serviceId = s.id
         LEFT JOIN user su ON su.id = s.seller

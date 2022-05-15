@@ -4,7 +4,8 @@ const {
   register,
   updateUserInfo,
   getUserInfo,
-  getCategory
+  getCategory,
+  checkAccountValid,
 } = require('../controller/user.controller')
 
 const {
@@ -14,7 +15,6 @@ const {
 
 const {
   verifyAuth,
-
 } = require('../middleware/auth.middleware')
 
 const userRouter = new Router({prefix: '/user'});
@@ -26,5 +26,7 @@ userRouter.get('/getUserInfo', verifyAuth, getUserInfo)
 userRouter.patch('/updateUserInfo', verifyAuth, updateUserInfo)
 // 查询分类
 userRouter.get('/getCategory', getCategory)
+// 检查用户名是否有效
+userRouter.get('/checkAccountValid', checkAccountValid)
 
 module.exports = userRouter
