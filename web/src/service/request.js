@@ -34,7 +34,7 @@ export default function $(config) {
           })
         default:
           hot.showErrorSnackbar(res.data.message)
-          return res.data
+          return Promise.reject(res.data)
       }
     },
     err => {

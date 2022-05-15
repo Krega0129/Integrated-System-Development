@@ -11,6 +11,24 @@ class ClientController {
       data: result
     })
   }
+
+  async getService(ctx, next) {
+    const {id} = ctx.user
+    const result = await clientService.getService(id);
+
+    ctx.body = res({
+      data: result
+    })
+  }
+
+  async getServiceOrders(ctx, next) {
+    const {id} = ctx.user
+    const result = await clientService.getServiceOrders(id);
+
+    ctx.body = res({
+      data: result
+    })
+  }
 }
 
 module.exports = new ClientController()

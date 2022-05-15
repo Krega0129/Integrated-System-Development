@@ -1,6 +1,6 @@
 <template>
   <v-card class="full-height">
-    <v-card-title class="text-h5 font-weight-black">发布历史</v-card-title>
+    <v-card-title>订单</v-card-title>
     <v-card-text>
       <v-data-table
         :headers="headers"
@@ -16,9 +16,9 @@
           {{ item.introduction || '无' }}
         </template>
 
-        <template v-slot:[`item.buyer`]="{ item }">
-          <div v-if="item.buyer" class="d-flex">
-            {{ item.buyer.name }}
+        <template v-slot:[`item.seller`]="{ item }">
+          <div v-if="item.seller" class="d-flex">
+            {{ item.seller.name }}
 
             <div class="text-center">
               <v-menu
@@ -37,22 +37,22 @@
                 <v-card>
                   <v-list>
                     <v-list-item>
-                      <avatar :sex="item.buyer.sex"></avatar>
-                      <v-list-item-title>{{ item.buyer.name }}</v-list-item-title>
+                      <avatar :sex="item.seller.sex"></avatar>
+                      <v-list-item-title>{{ item.seller.name }}</v-list-item-title>
                     </v-list-item>
                     <v-list-item>
                       <v-list-item-title>
-                        账号：{{ item.buyer.account }}
+                        账号：{{ item.seller.account }}
                       </v-list-item-title>
                     </v-list-item>
                     <v-list-item>
                       <v-list-item-title>
-                        性别：{{ item.buyer.sex }}
+                        性别：{{ item.seller.sex == 1 ? '男' : '女' }}
                       </v-list-item-title>
                     </v-list-item>
                     <v-list-item>
                       <v-list-item-title>
-                        年龄：{{ item.buyer.age }}
+                        年龄：{{ item.seller.age }}
                       </v-list-item-title>
                     </v-list-item>
                   </v-list>
@@ -62,36 +62,48 @@
           </div>
         </template>
 
-        <template v-slot:[`item.sold`]="{ item }">
-          <span :class="item.sold ? 'red--text' : 'green--text'">{{ item.sold ? '已售' : '在售' }}</span>
+        <template v-slot:[`item.releaseTime`]="{ item }">
+          {{ timeFormatter(item.releaseTime) }}
         </template>
 
+        <template v-slot:[`item.buyTime`]="{ item }">
+          {{ timeFormatter(item.buyTime) }}
+        </template>
       </v-data-table>
     </v-card-text>
-  </v-card>
+  </v-card>  
 </template>
 
 <script>
-import { headersArrToHeadersMap, generateHeaders } from "@/utils/tableConstant";
 import * as API from '@/service/api';
+import { headersArrToHeadersMap, generateHeaders } from "@/utils/tableConstant";
+import { timeFormatter } from '@/utils';
 
 export default {
-  data() {
-    return {
-      desserts: []
-    }
-  },
+  data: () => ({
+    desserts: []
+  }),
   created() {
-    API.getServiceByUserId().then(res => {
-      this.desserts = res.data
-    }).catch(err => {
-      console.log(err);
-    })
-  },
+    this._getServiceOrders()
+  },  
   computed: {
     headers() {
-      return generateHeaders(this.desserts[0], headersArrToHeadersMap('SERVICE_HISTORY'))
+      return generateHeaders(this.desserts[0], headersArrToHeadersMap('SERVICE_ORDER'), {
+        sort: ['name', 'category', 'seller', 'price', 'introduction', 'releaseTime', 'buyTime'],
+        sortable: true
+      })
     }
+  },
+  methods: {
+    _getServiceOrders() {
+      API.getServiceOrders().then(res => {
+        this.desserts = res.data
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    timeFormatter,
   }
 }
 </script>

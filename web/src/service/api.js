@@ -48,3 +48,53 @@ export function getServiceByUserId() {
     url: '/getServiceByUserId'
   })
 }
+
+export function getService() {
+  return $({
+    url: '/getService'
+  })
+}
+
+export function getServiceOrders() {
+  return $({
+    url: '/getServiceOrders'
+  })
+}
+
+export function buyService(data) {
+  return $({
+    url: '/buyService',
+    method: 'post',
+    data
+  })
+}
+
+export function getUserList(params) {
+  return $({
+    url: '/getUserList',
+    params
+  })
+}
+
+export function getProjectList(params) {
+  return $({
+    url: '/getProjectList',
+    params
+  })
+}
+
+export function addCategory(data) {
+  return $({
+    url: '/addCategory',
+    method: 'post',
+    data
+  })
+}
+
+export function updateUserInfo(data) {
+  return $({
+    url: '/user/updateUserInfo',
+    method: 'patch',
+    data
+  })
+}

@@ -13,7 +13,7 @@ const {
   categoryExist 
 } = require('../middleware/employee.middleware');
 
-const employeeRouter = new Router({prefix: '/employee'});
+const employeeRouter = new Router();
 
 // 获取用户列表
 employeeRouter.get('/getUserList', verifyAuth, verifyPermission(1), getUserList);

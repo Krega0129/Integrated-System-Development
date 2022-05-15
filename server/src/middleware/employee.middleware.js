@@ -4,7 +4,7 @@ const errorEmitter = require('../utils/error-emitter')
 
 const categoryExist = async (ctx, next) => {
   const {category} = ctx.request.body;
-  const result = await employeeService.getCategoryById(category)
+  const result = await employeeService.getCategoryByName(category)
 
   if(result) {
     return errorEmitter(errorTypes.CATEGORY_ALREADY_EXIST, ctx)

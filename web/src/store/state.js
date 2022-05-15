@@ -6,5 +6,7 @@ export default {
     type: 'success'
   },
 
-  user: {}
+  user: {},
+
+  category: []
 }

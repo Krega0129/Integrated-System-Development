@@ -282,7 +282,17 @@ export default {
       }).then(res => {
         localStorage.setItem('token', res.data.token)
         this.$hot.showSuccessSnackbar('登录成功')
-        this.$router.replace('/')
+        switch(parseInt(res.data.role)) {
+          case 1: 
+            this.$router.replace('/user/userManagement')
+            break;
+          case 2:
+            this.$router.replace('/user/addService')
+            break;
+          case 3:
+            this.$router.replace('/user/serviceStore')
+            break;
+        }
       }).catch(err => {
         console.log(err);
       })

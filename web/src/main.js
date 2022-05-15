@@ -5,11 +5,15 @@ import {vuetify} from './plugins'
 import store from './store';
 import hot from './utils/hot';
 
+import avatar from '@/components/avatar.vue';
+
 import './assets/css/base.css'
 
 Vue.config.productionTip = false
 
 Vue.prototype.$hot = hot
+
+Vue.component('avatar', avatar)
 
 new Vue({
   router,
