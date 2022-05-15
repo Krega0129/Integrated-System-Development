@@ -141,7 +141,7 @@
       </v-card>
     </v-dialog>
 
-    <v-container fluid class="yellow lighten-5 full-height">
+    <v-container fluid class="full-height">
       <router-view />
     </v-container>
   </div>
