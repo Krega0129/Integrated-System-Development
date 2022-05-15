@@ -6,6 +6,7 @@
       v-model="drawer"
       :mini-variant.sync="mini"
       permanent
+      class="teal lighten-5"
     >
       <v-list>
         <v-list-item class="px-2">
@@ -98,6 +99,7 @@
                   v-model="user.sex"
                   row
                 >
+                  性别：
                   <v-radio
                     label="男"
                     value="1"
@@ -139,7 +141,7 @@
       </v-card>
     </v-dialog>
 
-    <v-container fluid class="full-height">
+    <v-container fluid class="yellow lighten-5 full-height">
       <router-view />
     </v-container>
   </div>

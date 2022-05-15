@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="primary full-height d-flex">
+  <v-container fluid class="teal lighten-5 full-height d-flex">
     <v-card 
       width="400"
       class="mx-auto align-self-center"
